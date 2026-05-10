@@ -1,3 +1,4 @@
+
 import { getUserById } from "@/app/lib/data";
 import React from "react";
 
@@ -9,6 +10,9 @@ console.log(user);
   return (
     <div>
       <h1>User Details</h1>
+        <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p>
+        <p>Role: {user.role}</p>
     </div>
   );
 };

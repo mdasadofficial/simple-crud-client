@@ -4,7 +4,7 @@ export const getUsers = async () => {
   return data;
 }
 export const getUserById = async (userId) => {
-    // const res = await fetch(`http://localhost:5000/users/${userId}`);   
-    // const data= await res.json();
-    // return data;
+    const res = await fetch(`http://localhost:5000/users/${userId}`);   
+    const data= await res.json();
+    return data;
 }

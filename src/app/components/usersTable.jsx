@@ -1,16 +1,13 @@
-'use client';
+"use client";
 import { AlertDialog, Button, Table } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
-import { deleteUser } from "../lib/actions";
 
-const UsersTable = ({ users }) => {
-
-    
-    const handleDelete = async(userId) => {
-      await deleteUser(userId);
-    }
-    return (
+const UsersTable = ({ users, deleteUserAction }) => {
+  const handleDelete = async (userId) => {
+    deleteUserAction(userId);
+  };
+  return (
     <Table>
       <Table.ScrollContainer>
         <Table.Content aria-label="Team members" className="min-w-[600px]">
@@ -30,7 +27,7 @@ const UsersTable = ({ users }) => {
                   <Link href={`/users/${user._id}`}>
                     <Button variant="outline">Details</Button>
                   </Link>
-                  <Link href={`/users/${user._id}`}>
+                  <Link href={`/users/${user._id}/edit`}>
                     <Button variant="outline">Edit</Button>
                   </Link>
                   <AlertDialog>
@@ -48,16 +45,20 @@ const UsersTable = ({ users }) => {
                           <AlertDialog.Body>
                             <p>
                               This will permanently delete{" "}
-                              <strong>{user.name}</strong> and all of its
-                              data. This action cannot be undone.
+                              <strong>{user.name}</strong> and all of its data.
+                              This action cannot be undone.
                             </p>
                           </AlertDialog.Body>
                           <AlertDialog.Footer>
                             <Button slot="close" variant="tertiary">
                               Cancel
                             </Button>
-                            <Button onClick={()=> handleDelete(user._id)} slot="close" variant="danger">
-                             Confirm Delete
+                            <Button
+                              onClick={() => handleDelete(user._id)}
+                              slot="close"
+                              variant="danger"
+                            >
+                              Confirm Delete
                             </Button>
                           </AlertDialog.Footer>
                         </AlertDialog.Dialog>
